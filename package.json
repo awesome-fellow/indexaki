@@ -1,0 +1,15 @@
+{
+  "name": "indexaki",
+  "version": "1.0.0",
+  "description": "store and search large documents",
+  "main": "kap-indexer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "git@github.com:kapekost/indexaki.git"
+  },
+  "author": "Kostas Kapetanakis",
+  "license": "ISC"
+}
