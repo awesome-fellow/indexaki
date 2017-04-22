@@ -1,0 +1,11 @@
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: indexaki
+  release:
+    tag: /release-.*/
+    owner: circleci
+    branch: master
+    heroku:
+      appname: indexaki
