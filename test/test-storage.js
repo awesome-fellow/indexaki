@@ -3,31 +3,53 @@
 var restify = require('restify');
 var assert = require('assert');
 var client = null;
-// require("../indexaki.js");
+var FirebaseServer = require("firebase-server");
+var Firebase = null;
 
-before(function(){
+before(function() {
   var port = process.env.PORT || 8080;
   // init the test client
-    client = restify.createJsonClient({
-    url: 'http://localhost:'+port,
+  client = restify.createJsonClient({
+    url: 'http://localhost:' + port,
     version: '*'
   });
-});
 
-describe('service: post endpoint', function() {
-it('should list echo the name', function(done) {
-  client
-    .get('/echo/kostas', 
-    function(err, req, res, data){
-      if (err) {
-        throw new Error(err);
-      }
-      else {
-        var body = JSON.parse(res.body);
-        assert.equal(res.statusCode, 200);
-        assert.equal(body.name, "kostas");
-        done();
-      }
+  Firebase = new FirebaseServer(5000,
+    "localhost.firebaseio.test", {
     });
+});
+after(function() {
+  Firebase.close(console.log('\n —server closed — '));
+});
+describe('service: post endpoint', function() {
+  it('should add a name', function(done) {
+    client
+      .post('/add/kostas',
+      function(err, req, res, data) {
+        if (err) {
+          throw new Error(err);
+        }
+        else {
+          var body = JSON.parse(res.body);
+          assert.equal(res.statusCode, 200);
+          assert.equal(body.username, "kostas");
+          done();
+        }
+      });
+  });
+  it('should get a name', function(done) {
+    client
+      .get('/get/kostas',
+      function(err, req, res, data) {
+        if (err) {
+          throw new Error(err);
+        }
+        else {
+          var body = JSON.parse(res.body);
+          assert.equal(res.statusCode, 200);
+          assert.equal(body.username, "kostas");
+          done();
+        }
+      });
   });
 });

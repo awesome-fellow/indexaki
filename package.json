@@ -14,9 +14,11 @@
   "author": "Kostas Kapetanakis",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^3.8.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {
+    "firebase-server": "^0.9.1",
     "mocha": "^3.2.0"
   }
 }

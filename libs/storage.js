@@ -1,12 +1,12 @@
 'use strict'
 
-var Storage = function(){
+var Storage = function() {
 
 };
-Storage.prototype.add = function(){
+Storage.prototype.add = function() {
     console.log("add");
 }
 
-module.exports={
+module.exports = {
     Storage: Storage
 }
