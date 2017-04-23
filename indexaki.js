@@ -18,8 +18,9 @@ firebase.initializeApp(config);
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
-server.get(/\/web\/?.*/, restify.serveStatic({
-  directory: __dirname
+server.get('/', restify.serveStatic({
+  'directory': __dirname,
+  'default': 'index.html'
 }));
 server
   .post('/add/:username', function(req, res, next) {
