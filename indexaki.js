@@ -20,7 +20,7 @@ server.get('/', restify.serveStatic({
 }));
 
 server
-  .post('/add/:username', function(req, res, next) {
+  .post('/document/:username', function(req, res, next) {
     res
       .send(req.params);
     storage.addItem(req.params.username);
@@ -28,7 +28,7 @@ server
   });
 
 server
-  .get('/get/:username', function(req, res, next) {
+  .get('/document/:username', function(req, res, next) {
     storage.getItem(req.params.username).then(function(item) {
       res.send({ "username": item });
     });
