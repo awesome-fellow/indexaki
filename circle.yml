@@ -1,7 +1,4 @@
 general:
-  artifacts:
-  - "web/dist"
-  - "web/index.html"
 test:
   override:
     - npm run coverage
