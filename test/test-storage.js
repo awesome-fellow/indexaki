@@ -18,10 +18,13 @@ before(function() {
     "localhost.firebaseio.test", {
     });
 });
+
 after(function() {
   Firebase.close(console.log('\n —server closed — '));
 });
-describe('service: post endpoint', function() {
+
+describe('service: post get in firebase', function() {
+
   it('should add a name', function(done) {
     client
       .post('/add/kostas',
@@ -37,19 +40,24 @@ describe('service: post endpoint', function() {
         }
       });
   });
+
   it('should get a name', function(done) {
     client
-      .get('/get/kostas',
-      function(err, req, res, data) {
-        if (err) {
-          throw new Error(err);
-        }
-        else {
-          var body = JSON.parse(res.body);
-          assert.equal(res.statusCode, 200);
-          assert.equal(body.username, "kostas");
-          done();
-        }
-      });
-  });
-});
+      .post('/add/kapekost',
+      function() {
+        client
+          .get('/get/kapekost',
+          function(err, req, res, data) {
+            if (err) {
+              throw new Error(err);
+            }
+            else {
+              var body = JSON.parse(res.body);
+              assert.equal(res.statusCode, 200);
+              assert.equal(body.username, "kapekost");
+              done();
+            }
+          });
+      })
+  })
+})
