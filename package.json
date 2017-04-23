@@ -4,7 +4,7 @@
   "description": "store and search large documents",
   "main": "indexaki.js",
   "scripts": {
-    "test": "mocha",
+    "test": "./node_modules/.bin/istanbul cover _mocha",
     "start": "node indexaki.js"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "firebase-server": "^0.9.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0"
   }
 }
