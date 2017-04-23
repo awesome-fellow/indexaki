@@ -8,9 +8,9 @@ test:
     - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
 deployment:
   staging:
-    branch: master
+    branch: develop
     heroku:
-      appname: indexaki
+      appname: betaindexaki
   release:
     tag: /release-.*/
     owner: circleci
