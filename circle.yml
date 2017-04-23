@@ -1,6 +1,9 @@
 general:
   artifacts:
   - "coverage"
+test:
+  post:
+    - bash: <(./node_modules/.bin/codeclimate-test-reporter < coverage/lcov-report/lcov.info)
 deployment:
   staging:
     branch: master
