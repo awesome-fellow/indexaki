@@ -12,7 +12,7 @@ var config = {
   apiKey: process.env.FB_APIKEY,
   authDomain: process.env.FB_AUTHDOMAIN,
   databaseURL: process.env.FB_DBURL || "ws://localhost.firebaseio.test:5000",
-  storageBucket: process.env.FB_BUCKET,
+  storageBucket: process.env.FB_BUCKET
 };
 firebase.initializeApp(config);
 
