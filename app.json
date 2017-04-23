@@ -1,0 +1,29 @@
+{
+  "name": "indexaki",
+  "scripts": {
+  },
+  "env": {
+    "FB_APIKEY": {
+      "required": true
+    },
+    "FB_AUTHDOMAIN": {
+      "required": true
+    },
+    "FB_BUCKET": {
+      "required": true
+    },
+    "FB_DBURL": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
