@@ -18,7 +18,7 @@ firebase.initializeApp(config);
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
-server.get(/\/public\/?.*/, restify.serveStatic({
+server.get(/\/web\/?.*/, restify.serveStatic({
   directory: __dirname
 }));
 server
