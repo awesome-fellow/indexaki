@@ -25,9 +25,9 @@ after(function() {
 
 describe('service: post get in firebase', function() {
 
-  it('should add a name', function(done) {
+  it('should add a document', function(done) {
     client
-      .post('/add/kostas',
+      .post('/document/kostas',
       function(err, req, res, data) {
         if (err) {
           throw new Error(err);
@@ -41,12 +41,12 @@ describe('service: post get in firebase', function() {
       });
   });
 
-  it('should get a name', function(done) {
+  it('should get a document', function(done) {
     client
-      .post('/add/kapekost',
+      .post('/document/kapekost',
       function() {
         client
-          .get('/get/kapekost',
+          .get('/document/kapekost',
           function(err, req, res, data) {
             if (err) {
               throw new Error(err);
