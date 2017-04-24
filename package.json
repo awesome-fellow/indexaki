@@ -7,7 +7,7 @@
     "test": "mocha",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
     "preinstall": "webpack --progress --color",
-    "dev": "concurrently --kill-others \"webpack --watch \" \"webpack-dev-server --progress --colors\"",
+    "dev": "concurrently --kill-others \"webpack --watch \" \"npm start\"",
     "start": "node indexaki.js"
   },
   "repository": {
@@ -18,10 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap-material-design": "^0.5.10",
+    "css-loader": "^0.28.0",
     "firebase": "^3.8.0",
+    "jquery": "^3.2.1",
     "restify": "^4.3.0",
     "style-loader": "^0.16.1",
-    "css-loader": "^0.28.0",
     "webpack": "^2.4.1"
   },
   "devDependencies": {
