@@ -11,7 +11,7 @@ deployment:
       appname: betaindexaki
       skip_cleanup: true
   release:
-    tag: /release-.*/
+    tag: /v*/
     owner: circleci
     branch: master
     heroku:
