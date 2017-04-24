@@ -11,7 +11,7 @@
 - #### to get the document you added
     GET /document/:data
 - #### web interface
-    GET /web
+    GET /public
 
 ## development
 

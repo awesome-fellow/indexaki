@@ -16,16 +16,17 @@
   },
   "author": "Kostas Kapetanakis",
   "license": "ISC",
+  "homepage": "https://indexaki.herokuapp.com/public",
   "dependencies": {
     "bootstrap-material-design": "^0.5.10",
     "css-loader": "^0.28.0",
     "firebase": "^3.8.0",
-    "jquery": "^3.2.1",
     "restify": "^4.3.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1"
   },
   "devDependencies": {
+    "jquery": "^3.2.1",
     "codeclimate-test-reporter": "^0.4.1",
     "concurrently": "^3.4.0",
     "firebase-server": "^0.9.1",
