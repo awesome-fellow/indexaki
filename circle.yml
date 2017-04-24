@@ -5,7 +5,7 @@ test:
   post:
     - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
 deployment:
-  staging:
+  development:
     branch: develop
     heroku:
       appname: betaindexaki

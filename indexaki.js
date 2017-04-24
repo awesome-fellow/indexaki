@@ -21,7 +21,6 @@ server
     'default': 'index.html'
   }));
 
-console.log(path.resolve(__dirname, 'public'));
 server
   .post('/document/:username', function(req, res, next) {
     res
