@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
-    "postinstall": "webpack --progress --color",
+    "preinstall": "webpack --progress --color",
     "dev": "concurrently --kill-others \"webpack --watch \" \"webpack-dev-server --progress --colors\"",
     "start": "node indexaki.js"
   },

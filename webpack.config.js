@@ -1,11 +1,5 @@
 var webpack = require('webpack');
 
-new webpack.ProvidePlugin({
-	$: "jquery",
-	jQuery: "jquery",
-	"window.jQuery": "jquery"
-})
-
 module.exports = {
 	entry: "./web/libs/index.js",
 	output: {
@@ -16,5 +10,10 @@ module.exports = {
 		loaders: [
 			{ test: /\.css$/, loader: "style-loader!css-loader" }
 		]
+	},
+	externals: {
+		// require("jquery") is external and available
+		//  on the global var jQuery
+		"jquery": "jQuery"
 	}
 };
