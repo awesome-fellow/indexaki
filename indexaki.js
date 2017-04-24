@@ -14,7 +14,7 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
-server.get('/', restify.serveStatic({
+server.get('/web', restify.serveStatic({
   'directory': __dirname + '/public',
   'default': 'index.html'
 }));
