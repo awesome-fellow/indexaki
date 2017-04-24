@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
-    "preinstall": "webpack --progress --color",
+    "install": "webpack --progress --color",
     "dev": "concurrently --kill-others \"webpack --watch \" \"npm start\"",
     "start": "node indexaki.js"
   },
@@ -31,9 +31,6 @@
     "concurrently": "^3.4.0",
     "firebase-server": "^0.9.1",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "style-loader": "^0.16.1",
-    "css-loader": "^0.28.0",
-    "webpack": "^2.4.1"
+    "mocha": "^3.2.0"
   }
 }
