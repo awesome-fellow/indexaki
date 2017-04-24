@@ -2,7 +2,6 @@
 
 var restify = require('restify');
 var Storage = require('./libs/storage');
-var path = require('path');
 
 var storage = new Storage();
 
