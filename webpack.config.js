@@ -1,14 +1,10 @@
 var webpack = require('webpack');
-new webpack.ProvidePlugin({
-	$: "jquery",
-	jQuery: "jquery",
-	'window.jQuery': 'jquery',
-	'window.$': 'jquery',
-})
+var path = require('path');
+
 module.exports = {
 	entry: "./web/libs/index.js",
 	output: {
-		path: __dirname + '/public',
+		path: path.resolve(__dirname, 'public'),
 		filename: "bundle.js"
 	},
 	module: {
