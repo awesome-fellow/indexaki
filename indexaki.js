@@ -2,6 +2,7 @@
 
 var restify = require('restify');
 var Storage = require('./libs/storage');
+var path = require('path');
 
 var storage = new Storage();
 
@@ -14,11 +15,13 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
-server.get('/web', restify.serveStatic({
-  'directory': __dirname + '/public',
-  'default': 'index.html'
-}));
+server
+  .get(/\/public\/?.*/, restify.serveStatic({
+    'directory': __dirname,
+    'default': 'index.html'
+  }));
 
+console.log(path.resolve(__dirname, 'public'));
 server
   .post('/document/:username', function(req, res, next) {
     res
