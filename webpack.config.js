@@ -9,7 +9,7 @@ new webpack.ProvidePlugin({
 module.exports = {
 	entry: "./web/libs/index.js",
 	output: {
-		path: __dirname + '/web/public',
+		path: __dirname + '/public',
 		filename: "bundle.js"
 	},
 	module: {

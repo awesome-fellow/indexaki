@@ -9,9 +9,11 @@ deployment:
     branch: develop
     heroku:
       appname: betaindexaki
+      skip_cleanup: true
   release:
     tag: /release-.*/
     owner: circleci
     branch: master
     heroku:
       appname: indexaki
+      skip_cleanup: true
