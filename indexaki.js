@@ -21,18 +21,21 @@ server
   }));
 
 server
-  .post('/document/:username', function(req, res, next) {
-    res
-      .send(req.params);
-    storage.addItem(req.params.username);
-    return next();
+  .post('/document/:title', function(req, res, next) {
+    storage.addItem({ title: req.params.title })
+      .then((document) => {
+        res.send({ document_uuid: document.document_uuid });
+        return next();
+      });
   });
 
 server
-  .get('/document/:username', function(req, res, next) {
-    storage.getItem(req.params.username).then(function(item) {
-      res.send({ "username": item });
-    });
+  .get('/document/:title', function(req, res, next) {
+    storage.getItem(req.params.title)
+      .then((document) => {
+        res.send({ "title": document.title });
+        return next();
+      });
   });
 
 server.listen(process.env.PORT || 8080, function() {

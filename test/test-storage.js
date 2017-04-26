@@ -1,7 +1,10 @@
 'use strict'
 
 var restify = require('restify');
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert;
+var expect = chai.expect;
+
 var client = null;
 var FirebaseServer = require("firebase-server");
 var Firebase = null;
@@ -35,7 +38,7 @@ describe('service: post get in firebase', function() {
         else {
           var body = JSON.parse(res.body);
           assert.equal(res.statusCode, 200);
-          assert.equal(body.username, "kostas");
+          expect(body.document_uuid).to.exist;
           done();
         }
       });
@@ -54,7 +57,7 @@ describe('service: post get in firebase', function() {
             else {
               var body = JSON.parse(res.body);
               assert.equal(res.statusCode, 200);
-              assert.equal(body.username, "kapekost");
+              assert.equal(body.title, "kapekost");
               done();
             }
           });
