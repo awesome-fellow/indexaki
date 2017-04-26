@@ -26,11 +26,12 @@
     "webpack": "^2.4.1"
   },
   "devDependencies": {
-    "jquery": "^3.2.1",
+    "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.4.1",
     "concurrently": "^3.4.0",
     "firebase-server": "^0.9.1",
     "istanbul": "^0.4.5",
+    "jquery": "^3.2.1",
     "mocha": "^3.2.0"
   }
 }

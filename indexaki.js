@@ -22,17 +22,20 @@ server
 
 server
   .post('/document/:title', function(req, res, next) {
-    res
-      .send(req.params);
-    storage.addItem({ title: req.params.title });
-    return next();
+    storage.addItem({ title: req.params.title })
+      .then((document) => {
+        res.send({ document_uuid: document.document_uuid });
+        return next();
+      });
   });
 
 server
   .get('/document/:title', function(req, res, next) {
-    storage.getItem(req.params.title).then(function(document) {
-      res.send({ "title": document.title });
-    });
+    storage.getItem(req.params.title)
+      .then((document) => {
+        res.send({ "title": document.title });
+        return next();
+      });
   });
 
 server.listen(process.env.PORT || 8080, function() {

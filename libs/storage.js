@@ -12,25 +12,27 @@ var config = {
 firebase.initializeApp(config);
 
 var Storage = function() {
-
+    this.db = firebase.database();
 };
 
 Storage.prototype.addItem = function(document) {
     var document = new Document(document);
-    firebase
-        .database()
-        .ref('/documents')
-        .set(document);
+    return new Promise((resolve, reject) => {
+        this.db.ref('/documents')
+            .set(document);
+        resolve(document);
+    });
 }
 
 Storage.prototype.getItem = function(username) {
     return new Promise((resolve, reject) => {
-        firebase
-            .database()
-            .ref('/documents')
+        this.db.ref('/documents')
             .once('value')
-            .then(function(snapshot) {
+            .then((snapshot) => {
                 resolve(snapshot.val());
+            })
+            .catch((error) => {
+                reject(error);
             });
     });
 }
