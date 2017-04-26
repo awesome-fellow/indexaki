@@ -1,16 +1,16 @@
 'use strict'
 
-var restify = require('restify');
-var chai = require('chai');
-var assert = chai.assert;
-var expect = chai.expect;
+const restify = require('restify');
+const chai = require('chai');
+const assert = chai.assert;
+const expect = chai.expect;
 
-var client = null;
-var FirebaseServer = require("firebase-server");
-var Firebase = null;
+let client = null;
+const FirebaseServer = require("firebase-server");
+let Firebase = null;
 
 before(function() {
-  var port = process.env.PORT || 8080;
+  const port = process.env.PORT || 8080;
   // init the test client
   client = restify.createJsonClient({
     url: 'http://localhost:' + port,
@@ -36,7 +36,7 @@ describe('service: post get in firebase', function() {
           throw new Error(err);
         }
         else {
-          var body = JSON.parse(res.body);
+          let body = JSON.parse(res.body);
           assert.equal(res.statusCode, 200);
           expect(body.document_uuid).to.exist;
           done();
@@ -55,7 +55,7 @@ describe('service: post get in firebase', function() {
               throw new Error(err);
             }
             else {
-              var body = JSON.parse(res.body);
+              let body = JSON.parse(res.body);
               assert.equal(res.statusCode, 200);
               assert.equal(body.title, "kapekost");
               done();

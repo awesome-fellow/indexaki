@@ -1,7 +1,7 @@
 'use strict'
-var uuid = require('uuid/v4');
+const uuid = require('uuid/v4');
 
-var generate_uuid = function() {
+const generate_uuid = function() {
 	return uuid();
 }
 module.exports = {

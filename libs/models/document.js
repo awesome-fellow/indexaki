@@ -1,8 +1,8 @@
 'use strict'
 
-var utils = require('./../utils');
+const utils = require('./../utils');
 
-var Document = function(document) {
+const Document = function(document) {
 	this.document_uuid = utils.generate_uuid();
 	this.title = document.title || "";
 	this.body = document.body || "";

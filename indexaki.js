@@ -1,11 +1,11 @@
 'use strict'
 
-var restify = require('restify');
-var Storage = require('./libs/storage');
+const restify = require('restify');
+const Storage = require('./libs/storage');
 
-var storage = new Storage();
+const storage = new Storage();
 
-var server = restify.createServer({
+const server = restify.createServer({
   name: 'indexaki',
   version: '1.0.0'
 });
