@@ -35,7 +35,7 @@ describe('service: post get in firebase', function() {
         else {
           var body = JSON.parse(res.body);
           assert.equal(res.statusCode, 200);
-          assert.equal(body.username, "kostas");
+          assert.equal(body.title, "kostas");
           done();
         }
       });
@@ -54,7 +54,7 @@ describe('service: post get in firebase', function() {
             else {
               var body = JSON.parse(res.body);
               assert.equal(res.statusCode, 200);
-              assert.equal(body.username, "kapekost");
+              assert.equal(body.title, "kapekost");
               done();
             }
           });
