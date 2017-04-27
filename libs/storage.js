@@ -1,6 +1,5 @@
 'use strict'
 const firebase = require('firebase');
-
 const Document = require('./models/document');
 
 const config = {
