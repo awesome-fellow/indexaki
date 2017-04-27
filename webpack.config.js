@@ -12,7 +12,7 @@ module.exports = {
 			{ test: /\.css$/, loader: "style-loader!css-loader" },
 			{
 				test: /index\.js$/,
-				loader: 'webpack-replace',
+				loader: 'string-replace-loader',
 				query: {
 					search: '@@API_URL',
 					replace: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8080' : 'https://betaindexaki.herokuapp.com'
