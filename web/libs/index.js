@@ -8,10 +8,8 @@ $.material.init()
 const API_URL = '@@API_URL'
 
 document.getElementById('save_document').addEventListener('click', function() {
-	let doc_title = document.getElementById('doc_title').value
-	let doc_body = document.getElementById('doc_body').value
-	console.log(doc_title)
-	console.log(doc_body)
+	var doc_title = document.getElementById("doc_title").value
+	var doc_body = document.getElementById("doc_body").value
 	$.post(API_URL + "/document/" + doc_title,
 		{
 			body: doc_body,
