@@ -9,7 +9,15 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.css$/, loader: "style-loader!css-loader" }
+			{ test: /\.css$/, loader: "style-loader!css-loader" },
+			{
+				test: /index\.js$/,
+				loader: 'string-replace-loader',
+				query: {
+					search: '@@API_URL',
+					replace: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8080' : 'https://betaindexaki.herokuapp.com'
+				}
+			}
 		]
 	}
 };

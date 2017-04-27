@@ -1,9 +1,8 @@
 'use strict'
-var firebase = require('firebase');
+const firebase = require('firebase');
+const Document = require('./models/document');
 
-var Document = require('./models/document');
-
-var config = {
+const config = {
     apiKey: process.env.FB_APIKEY,
     authDomain: process.env.FB_AUTHDOMAIN,
     databaseURL: process.env.FB_DBURL || "ws://localhost.firebaseio.test:5000",
@@ -11,12 +10,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var Storage = function() {
+const Storage = function() {
     this.db = firebase.database();
 };
 
-Storage.prototype.addItem = function(document) {
-    var document = new Document(document);
+Storage.prototype.addItem = function(data) {
+    let document = new Document(data);
     return new Promise((resolve, reject) => {
         this.db.ref('/documents')
             .set(document);

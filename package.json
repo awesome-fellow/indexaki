@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
-    "install": "webpack --progress --color",
+    "install": "webpack --progress --color -p",
     "dev": "concurrently --kill-others \"webpack --watch \" \"npm start\"",
     "start": "node indexaki.js"
   },
@@ -33,6 +33,7 @@
     "firebase-server": "^0.9.1",
     "istanbul": "^0.4.5",
     "jquery": "^3.2.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "string-replace-loader": "^1.2.0"
   }
 }
