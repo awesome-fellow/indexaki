@@ -9,11 +9,9 @@ deployment:
     branch: develop
     heroku:
       appname: betaindexaki
-      skip_cleanup: true
   production:
     tag: /v[0-9]+(\.[0-9]+)*/
     owner: kapekost
     branch: master
     heroku:
       appname: indexaki
-      skip_cleanup: true
