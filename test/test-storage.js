@@ -23,7 +23,7 @@ before(function() {
 });
 
 after(function() {
-  Firebase.close(console.log('\n —server closed — '));
+  Firebase.close(console.log('\n —server closed— '));
 });
 
 describe('service: post get in firebase', function() {
@@ -46,7 +46,7 @@ describe('service: post get in firebase', function() {
 
   it('should get a document', function(done) {
     client
-      .post('/document/kapekost',
+      .post('/document/kapekost', { body: "test body" },
       function() {
         client
           .get('/document/kapekost',
@@ -58,6 +58,7 @@ describe('service: post get in firebase', function() {
               let body = JSON.parse(res.body);
               assert.equal(res.statusCode, 200);
               assert.equal(body.title, "kapekost");
+              assert.equal(body.body, "test body");
               done();
             }
           });
