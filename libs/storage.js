@@ -1,6 +1,6 @@
 'use strict'
-const firebase = require('firebase');
-const Document = require('./models/document');
+const firebase = require('firebase')
+const Document = require('./models/document')
 
 const config = {
     apiKey: process.env.FB_APIKEY,
@@ -8,32 +8,41 @@ const config = {
     databaseURL: process.env.FB_DBURL || "ws://localhost.firebaseio.test:5000",
     storageBucket: process.env.FB_BUCKET
 };
-firebase.initializeApp(config);
+firebase.initializeApp(config)
 
 const Storage = function() {
-    this.db = firebase.database();
+    this.documents = []
+    this.db = firebase.database()
+    this.db.ref('/documents')
+        .on('child_added', (snapshot) => {
+            this.documents.push(snapshot.val())
+        })
 };
 
 Storage.prototype.addItem = function(data) {
-    let document = new Document(data);
+    let document = new Document(data)
     return new Promise((resolve, reject) => {
-        this.db.ref('/documents')
-            .set(document);
-        resolve(document);
+        this.db.ref('/documents/' + document.document_uuid)
+            .set(document)
+        resolve(document)
     });
 }
 
-Storage.prototype.getItem = function(username) {
+Storage.prototype.getItem = function(title) {
+    var self = this
     return new Promise((resolve, reject) => {
-        this.db.ref('/documents')
-            .once('value')
-            .then((snapshot) => {
-                resolve(snapshot.val());
-            })
-            .catch((error) => {
-                reject(error);
-            });
-    });
+        self.documents.forEach(function(doc) {
+            if (doc.title === title) {
+                resolve(doc)
+            }
+        })
+    })
 }
 
+Storage.prototype.getItems = function() {
+    var self = this
+    return new Promise((resolve, reject) => {
+        resolve(self.documents);
+    })
+}
 module.exports = Storage;

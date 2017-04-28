@@ -38,6 +38,15 @@ server
       });
   });
 
+server
+  .get('/documents', function(req, res, next) {
+    storage.getItems()
+      .then((documents) => {
+        res.send(documents);
+        return next();
+      });
+  });
+
 server.listen(process.env.PORT || 8080, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
