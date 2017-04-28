@@ -24,7 +24,8 @@
     "restify": "^4.3.0",
     "style-loader": "^0.16.1",
     "uuid": "^3.0.1",
-    "webpack": "^2.4.1"
+    "webpack": "^2.4.1",
+    "string-replace-loader": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -33,7 +34,6 @@
     "firebase-server": "^0.9.1",
     "istanbul": "^0.4.5",
     "jquery": "^3.2.1",
-    "mocha": "^3.2.0",
-    "string-replace-loader": "^1.2.0"
+    "mocha": "^3.2.0"
   }
 }
