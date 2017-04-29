@@ -21,7 +21,7 @@ server
   }));
 
 server
-  .post('/document/:title', function(req, res, next) {
+  .post('/documents/:title', function(req, res, next) {
     storage.addItem({ title: req.params.title, body: req.params.body })
       .then((document) => {
         res.send({ document_uuid: document.document_uuid });
@@ -30,7 +30,7 @@ server
   });
 
 server
-  .get('/document/:title', function(req, res, next) {
+  .get('/documents/:title', function(req, res, next) {
     storage.getItem(req.params.title)
       .then((document) => {
         res.send({ "title": document.title, body: document.body });

@@ -30,7 +30,7 @@ describe('service: post get in firebase', function() {
 
   it('should add a document', function(done) {
     client
-      .post('/document/kostas',
+      .post('/documents/kostas',
       function(err, req, res, data) {
         if (err) {
           throw new Error(err);
@@ -46,10 +46,10 @@ describe('service: post get in firebase', function() {
 
   it('should get a document', function(done) {
     client
-      .post('/document/kapekost', { body: "test body" },
+      .post('/documents/kapekost', { body: "test body" },
       function() {
         client
-          .get('/document/kapekost',
+          .get('/documents/kapekost',
           function(err, req, res, data) {
             if (err) {
               throw new Error(err);
@@ -67,13 +67,13 @@ describe('service: post get in firebase', function() {
 
   it('should get first of 2 documents', function(done) {
     client
-      .post('/document/kapekost', { body: "test body" },
+      .post('/documents/kapekost', { body: "test body" },
       function() {
         client
-          .post('/document/kapekost2', { body: "test body2" },
+          .post('/documents/kapekost2', { body: "test body2" },
           function() {
             client
-              .get('/document/kapekost',
+              .get('/documents/kapekost',
               function(err, req, res, data) {
                 if (err) {
                   throw new Error(err);
@@ -92,10 +92,10 @@ describe('service: post get in firebase', function() {
 
   it('should get all documents', function(done) {
     client
-      .post('/document/kapekost', { body: "test body" },
+      .post('/documents/kapekost', { body: "test body" },
       function() {
         client
-          .post('/document/kapekost2', { body: "test body2" },
+          .post('/documents/kapekost2', { body: "test body2" },
           function() {
             client
               .get('/documents',

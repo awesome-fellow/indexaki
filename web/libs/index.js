@@ -12,7 +12,7 @@ document.getElementById('save_document').addEventListener('click', function() {
 	var data = {
 		body: doc_body,
 	}
-	callAPI("POST", API_URL + "/document/" + doc_title)
+	callAPI("POST", API_URL + "/documents/" + doc_title, doc_body)
 })
 
 var callAPI = function(method, url, data) {
