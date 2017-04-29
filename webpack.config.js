@@ -9,7 +9,21 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.css$/, loader: "style-loader!css-loader" },
+			{
+				test: /\.(js|jsx)$/,
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: ['es2015'],
+						},
+					},
+				],
+			},
+			{
+				test: /\.css$/,
+				loader: "style-loader!css-loader"
+			},
 			{
 				test: /index\.js$/,
 				loader: 'string-replace-loader',
