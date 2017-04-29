@@ -150,7 +150,7 @@ describe('Document', function() {
       body: 'old body'
     })
     assert.equal(doc.body, 'old body')
-    doc.setBody('new body');
+    doc.body = 'new body';
     assert.equal(doc.body, 'new body')
   })
 
