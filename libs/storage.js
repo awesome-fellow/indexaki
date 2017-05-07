@@ -31,7 +31,7 @@ Storage.prototype.addItem = function(data) {
 Storage.prototype.getItem = function(title) {
     var self = this
     return new Promise((resolve, reject) => {
-        self.documents.forEach(function(doc) {
+        self.documents.forEach((doc) => {
             if (doc.title === title) {
                 resolve(doc)
             }
