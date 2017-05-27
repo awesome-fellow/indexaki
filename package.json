@@ -7,7 +7,8 @@
     "test": "mocha",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
     "install": "webpack --progress --color -p",
-    "dev": "concurrently --kill-others \"webpack --watch \" \"npm start\"",
+    "debug": "node --debug=12345 indexaki.js",
+    "dev": "concurrently --kill-others \"webpack --watch \" \"npm run debug\"",
     "start": "node indexaki.js"
   },
   "repository": {

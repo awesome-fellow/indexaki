@@ -15,7 +15,7 @@ var callAPI = function(method, url, data) {
 			}
 		}
 		xmlHttp.open(method, url, true)
-		xmlHttp.send(data);
+		xmlHttp.send(JSON.stringify(data));
 	});
 }
 
@@ -28,8 +28,8 @@ document.getElementById('save_document').addEventListener('click', function() {
 callAPI("GET", API_URL + "/documents").then(
 	function(documents) {
 		documents = JSON.parse(documents)
-		documents.forEach((document) => {
-			ui_add_document(document.title, document.body);
+		documents.forEach((doc) => {
+			ui_add_document(doc.title, doc.body);
 		})
 	}
 );

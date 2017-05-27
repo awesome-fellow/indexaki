@@ -22,7 +22,8 @@ server
 
 server
   .post('/documents/:title', function(req, res, next) {
-    storage.addItem({ title: req.params.title, body: req.params.body })
+    var json_req = JSON.parse(req.body);
+    storage.addItem({ title: req.params.title, body: json_req.body })
       .then((document) => {
         res.send({ document_uuid: document.document_uuid });
         return next();
@@ -33,7 +34,7 @@ server
   .get('/documents/:title', function(req, res, next) {
     storage.getItem(req.params.title)
       .then((document) => {
-        res.send({ "title": document.title, body: document.body });
+        res.send({ "title": document.title, "body": document.body });
         return next();
       });
   });
