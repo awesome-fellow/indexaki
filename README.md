@@ -7,9 +7,9 @@
 
 ##### Create endpoints to push documents in firebase
 - #### to add a document
-    POST /document/:data
+    POST /documents/:data
 - #### to get the document you added
-    GET /document/:data
+    GET /documents/:data
 - #### web interface
     GET /public
 

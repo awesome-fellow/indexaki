@@ -21,8 +21,9 @@ server
   }));
 
 server
-  .post('/document/:title', function(req, res, next) {
-    storage.addItem({ title: req.params.title, body: req.params.body })
+  .post('/documents/:title', function(req, res, next) {
+    var doc_body = (req.headers['content-type'] === "application/json") ? req.params.body : JSON.parse(req.body).body;
+    storage.addItem({ title: req.params.title, body: doc_body })
       .then((document) => {
         res.send({ document_uuid: document.document_uuid });
         return next();
@@ -30,10 +31,10 @@ server
   });
 
 server
-  .get('/document/:title', function(req, res, next) {
+  .get('/documents/:title', function(req, res, next) {
     storage.getItem(req.params.title)
       .then((document) => {
-        res.send({ "title": document.title, body: document.body });
+        res.send({ "title": document.title, "body": document.body });
         return next();
       });
   });

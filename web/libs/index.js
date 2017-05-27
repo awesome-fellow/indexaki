@@ -1,20 +1,57 @@
 'use strict'
 require("./main.css")
-require("../../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css")
-global.jQuery = global.$ = require('../../node_modules/jquery/dist/jquery.min.js')
-require("bootstrap-material-design")
-$.material.init()
+require("../../node_modules/material-design-lite/dist/material.purple-green.min.css")
+require("../../node_modules/material-design-lite/dist/material.min.css")
+require("material-design-lite")
 
 const API_URL = '@@API_URL'
+
+var callAPI = function(method, url, data) {
+	return new Promise((resolve, reject) => {
+		var xmlHttp = new XMLHttpRequest()
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+				resolve(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open(method, url, true)
+		xmlHttp.send(JSON.stringify(data));
+	});
+}
 
 document.getElementById('save_document').addEventListener('click', function() {
 	var doc_title = document.getElementById("doc_title").value
 	var doc_body = document.getElementById("doc_body").value
-	$.post(API_URL + "/document/" + doc_title,
-		{
-			body: doc_body,
-		},
-		function(data, status) {
-			console.log("Data: " + data + "\nStatus: " + status);
-		})
+	var data = { "body": doc_body };
+	callAPI("POST", API_URL + "/documents/" + doc_title, data)
 })
+callAPI("GET", API_URL + "/documents").then(
+	function(documents) {
+		documents = JSON.parse(documents)
+		documents.forEach((doc) => {
+			ui_add_document(doc.title, doc.body);
+		})
+	}
+);
+
+function ui_add_document(title, body) {
+	var doc_list = document.getElementById('doc_list');
+	var bullet_div = document.createElement("div");
+	bullet_div.className = "section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone";
+	var inner_bullet_div = document.createElement("div");
+	inner_bullet_div.className = "section__circle-container__circle mdl-color--primary"
+	bullet_div.appendChild(inner_bullet_div);
+
+	var main_div = document.createElement("div");
+	main_div.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone"
+	var main_h5 = document.createElement("h5");
+	main_h5.innerText = title;
+	main_div.appendChild(main_h5);
+	var main_p = document.createElement("p");
+	main_p.textContent = body
+	main_div.appendChild(main_p);
+
+
+	doc_list.appendChild(bullet_div);
+	doc_list.appendChild(main_div);
+}
