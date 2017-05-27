@@ -141,7 +141,7 @@ describe('Document', function() {
       title: 'old title'
     })
     assert.equal(doc.title, 'old title')
-    doc.setTitle('new title');
+    doc.setTitle('new title')
     assert.equal(doc.title, 'new title')
   })
 
@@ -150,7 +150,7 @@ describe('Document', function() {
       body: 'old body'
     })
     assert.equal(doc.body, 'old body')
-    doc.body = 'new body';
+    doc.setBody('new body')
     assert.equal(doc.body, 'new body')
   })
 
