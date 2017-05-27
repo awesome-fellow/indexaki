@@ -22,8 +22,8 @@ server
 
 server
   .post('/documents/:title', function(req, res, next) {
-    var json_req = JSON.parse(req.body);
-    storage.addItem({ title: req.params.title, body: json_req.body })
+    var doc_body = (req.headers['content-type'] === "application/json") ? req.params.body : JSON.parse(req.body).body;
+    storage.addItem({ title: req.params.title, body: doc_body })
       .then((document) => {
         res.send({ document_uuid: document.document_uuid });
         return next();
