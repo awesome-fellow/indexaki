@@ -29,7 +29,7 @@ module.exports = {
 				loader: 'string-replace-loader',
 				query: {
 					search: '@@API_URL',
-					replace: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8080' : 'https://betaindexaki.herokuapp.com'
+					replace: (process.env.NODE_ENV !== 'production') ? 'http://localhost:8080' : 'https://indexaki.herokuapp.com'
 				}
 			}
 		]
