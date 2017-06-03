@@ -24,15 +24,23 @@ document.getElementById('save_document').addEventListener('click', function() {
 	var doc_body = document.getElementById("doc_body").value
 	var data = { "body": doc_body };
 	callAPI("POST", API_URL + "/documents/" + doc_title, data)
+		.then(function() { fetch_all_docs() });
 })
-callAPI("GET", API_URL + "/documents").then(
-	function(documents) {
-		documents = JSON.parse(documents)
-		documents.forEach((doc) => {
-			ui_add_document(doc.title, doc.body);
-		})
-	}
-);
+
+document.getElementById('fetch_all_button').addEventListener('click', function() {
+	fetch_all_docs();
+})
+
+function fetch_all_docs() {
+	callAPI("GET", API_URL + "/documents").then(
+		function(documents) {
+			documents = JSON.parse(documents)
+			documents.forEach((doc) => {
+				ui_add_document(doc.title, doc.body);
+			})
+		}
+	);
+}
 
 function ui_add_document(title, body) {
 	var doc_list = document.getElementById('doc_list');
