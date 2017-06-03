@@ -36,7 +36,7 @@ function fetch_all_docs() {
 		function(documents) {
 			cleanup_list();
 			documents = JSON.parse(documents)
-			documents.forEach((doc) => {
+			documents.forEach(doc => {
 				ui_add_document(doc.title, doc.body);
 			})
 		}
@@ -50,24 +50,31 @@ function cleanup_list() {
 		myNode.removeChild(myNode.firstChild);
 	}
 }
+function fetch_gif(title) {
+	return callAPI("GET", API_URL + "/images/" + title).then(gif => Promise.resolve(gif.replace(/\"/g, "")))
+}
+
 function ui_add_document(title, body) {
-	var doc_list = document.getElementById('doc_list');
-	var bullet_div = document.createElement("div");
-	bullet_div.className = "section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone";
-	var inner_bullet_div = document.createElement("div");
-	inner_bullet_div.className = "section__circle-container__circle mdl-color--primary"
-	bullet_div.appendChild(inner_bullet_div);
+	fetch_gif(title).then(gif => {
+		var doc_list = document.getElementById('doc_list');
+		var bullet_div = document.createElement("div");
+		bullet_div.className = "section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone";
+		var inner_bullet_div = document.createElement("img");
+		inner_bullet_div.setAttribute("src", gif);
+		inner_bullet_div.setAttribute("height", "80em");
+		bullet_div.appendChild(inner_bullet_div);
 
-	var main_div = document.createElement("div");
-	main_div.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone"
-	var main_h5 = document.createElement("h5");
-	main_h5.innerText = title;
-	main_div.appendChild(main_h5);
-	var main_p = document.createElement("p");
-	main_p.textContent = body
-	main_div.appendChild(main_p);
+		var main_div = document.createElement("div");
+		main_div.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone"
+		var main_h5 = document.createElement("h5");
+		main_h5.innerText = title;
+		main_div.appendChild(main_h5);
+		var main_p = document.createElement("p");
+		main_p.textContent = body
+		main_div.appendChild(main_p);
 
+		doc_list.appendChild(bullet_div);
+		doc_list.appendChild(main_div);
 
-	doc_list.appendChild(bullet_div);
-	doc_list.appendChild(main_div);
+	});
 }
