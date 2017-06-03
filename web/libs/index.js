@@ -52,7 +52,8 @@ function cleanup_list() {
 }
 function fetch_gif(title) {
 	return callAPI("GET", API_URL + "/images/" + title).then(gif => Promise.resolve(gif.replace(/\"/g, "")))
-};
+}
+
 function ui_add_document(title, body) {
 	fetch_gif(title).then(gif => {
 		var doc_list = document.getElementById('doc_list');
