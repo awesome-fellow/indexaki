@@ -34,6 +34,7 @@ document.getElementById('fetch_all_button').addEventListener('click', function()
 function fetch_all_docs() {
 	callAPI("GET", API_URL + "/documents").then(
 		function(documents) {
+			cleanup_list();
 			documents = JSON.parse(documents)
 			documents.forEach((doc) => {
 				ui_add_document(doc.title, doc.body);
@@ -42,6 +43,13 @@ function fetch_all_docs() {
 	);
 }
 
+function cleanup_list() {
+	//cleanup previews display
+	var myNode = document.getElementById("doc_list");
+	while (myNode.firstChild) {
+		myNode.removeChild(myNode.firstChild);
+	}
+}
 function ui_add_document(title, body) {
 	var doc_list = document.getElementById('doc_list');
 	var bullet_div = document.createElement("div");
