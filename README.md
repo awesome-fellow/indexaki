@@ -16,7 +16,7 @@
 ## development
 
 ```shell
- npm dev
+ npm run dev
  ```
 
 - set env vars for Firebase
