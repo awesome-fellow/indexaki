@@ -31,6 +31,9 @@ document.getElementById('fetch_all_button').addEventListener('click', function()
 	fetch_all_docs();
 })
 
+document.getElementById('clear_docs').addEventListener('click', function() {
+	clear_docs();
+})
 function fetch_all_docs() {
 	callAPI("GET", API_URL + "/documents").then(
 		function(documents) {
@@ -39,6 +42,15 @@ function fetch_all_docs() {
 			documents.forEach(doc => {
 				ui_add_document(doc.title, doc.body);
 			})
+		}
+	);
+}
+
+function clear_docs() {
+	callAPI("DELETE", API_URL + "/documents").then(
+		function(documents) {
+			cleanup_list();
+			documents = [];
 		}
 	);
 }
@@ -68,13 +80,11 @@ function ui_add_document(title, body) {
 		main_div.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone"
 		var main_h5 = document.createElement("h5");
 		main_h5.innerText = title;
+		main_h5.appendChild(bullet_div);
 		main_div.appendChild(main_h5);
 		var main_p = document.createElement("p");
 		main_p.textContent = body
 		main_div.appendChild(main_p);
-
-		doc_list.appendChild(bullet_div);
 		doc_list.appendChild(main_div);
-
 	});
 }

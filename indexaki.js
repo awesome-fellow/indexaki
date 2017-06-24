@@ -50,6 +50,15 @@ server
   });
 
 server
+  .del('/documents', function(req, res, next) {
+    storage.removeItems()
+      .then(a => {
+        res.send({ status: 200 })
+        return next()
+      })
+  });
+
+server
   .get('/images/:q', function(req, res, next) {
     gifSearch.random(req.params.q).then(
       gifUrl => {

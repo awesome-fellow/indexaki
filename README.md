@@ -10,6 +10,8 @@
     POST /documents/:data
 - #### to get the document you added
     GET /documents/:data
+- #### to delete the documents
+    DELETE /documents
 - #### web interface
     GET /public
 
