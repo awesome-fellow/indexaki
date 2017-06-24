@@ -7,7 +7,7 @@ const expect = chai.expect;
 
 let client = null;
 const FirebaseServer = require("firebase-server");
-let Firebase = null;
+let firebaseServer = null;
 
 before(function() {
   const port = process.env.PORT || 8080;
@@ -17,13 +17,13 @@ before(function() {
     version: '*'
   });
 
-  Firebase = new FirebaseServer(5000,
+  firebaseServer = new FirebaseServer(5000,
     "localhost.firebaseio.test", {
     });
 });
 
 after(function() {
-  Firebase.close(console.log('\n —server closed— '));
+  firebaseServer.close(console.log('\n —server closed— '));
 });
 
 describe('service: post get in firebase', function() {
@@ -113,9 +113,38 @@ describe('service: post get in firebase', function() {
           })
       })
   })
+
+  it('should delete a document', function(done) {
+    client
+      .post('/documents/kapekost', { body: "test body" },
+      function() {
+        client
+          .del('/documents',
+          function(err, req, res, data) {
+            if (err) {
+              throw new Error(err);
+            }
+            else {
+              assert.equal(res.statusCode, 200);
+              client
+                .get('/documents',
+                function(err, req, res, data) {
+                  if (err) {
+                    throw new Error(err);
+                  } else {
+                    let body = JSON.parse(res.body);
+                    assert.equal(res.statusCode, 200);
+                    assert.equal(res.body, "[]");
+                    done();
+                  }
+                })
+            }
+          });
+      })
+  })
 })
 
-describe('Document', function() {
+describe('Document object', function() {
   var Document = require('../libs/models/document')
 
   it('should create a document', function() {

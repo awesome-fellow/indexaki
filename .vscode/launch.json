@@ -16,7 +16,7 @@
 			"name": "Launch Test",
 			"program": "${workspaceRoot}\\node_modules/mocha/bin/_mocha",
 			"args": [
-				"test/test-storage.js"
+				"test/test-api.js"
 			]
 		}
 	]
