@@ -12,6 +12,8 @@
     GET /documents/:data
 - #### to delete the documents
     DELETE /documents
+- #### to get a random gif url
+    GET /images/:keyword
 - #### web interface
     GET /public
 
