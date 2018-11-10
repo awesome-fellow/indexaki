@@ -10,9 +10,9 @@ const Storage = function() {
         storageBucket: process.env.FB_BUCKET
     };
 
-    firebase.initializeApp(this.config)
-    this.documents = []
-    this.db = firebase.database()
+    firebase.initializeApp(this.config);
+    this.documents = [];
+    this.db = firebase.database();
     this.db.ref('/documents')
         .on('child_added', (snapshot) => {
             this.documents.push(snapshot.val())
