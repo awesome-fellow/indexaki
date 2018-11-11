@@ -1,7 +1,7 @@
 {
   "name": "indexaki",
-  "scripts": {
-  },
+  "scripts": {},
+  "stack": "heroku-18",
   "env": {
     "FB_APIKEY": {
       "required": true
@@ -16,11 +16,8 @@
       "required": true
     }
   },
-  "formation": {
-  },
-  "addons": [
-
-  ],
+  "formation": {},
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"

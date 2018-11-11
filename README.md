@@ -15,7 +15,7 @@
 - #### to get a random gif url
     GET /images/:keyword
 - #### web interface
-    GET /public
+    GET /public/index.html
 
 ## development
 
