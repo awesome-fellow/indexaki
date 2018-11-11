@@ -11,20 +11,20 @@ const server = restify.createServer({
   version: '1.0.0'
 });
 
-server.use(restify.acceptParser(server.acceptable));
-server.use(restify.queryParser());
-server.use(restify.bodyParser());
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.queryParser());
+server.use(restify.plugins.bodyParser());
 
 server
-  .get(/\/public\/?.*/, restify.serveStatic({
+  .get('/public/*', restify.plugins.serveStatic({
     'directory': __dirname,
     'default': 'index.html'
   }));
 
 server
   .post('/documents/:title', function(req, res, next) {
-    var doc_body = (req.headers['content-type'] === "application/json") ? req.params.body : JSON.parse(req.body).body;
-    storage.addItem({ title: req.params.title, body: doc_body })
+    var doc_body = req.body.body;
+    storage.addItem({ "title": req.params.title, "body": doc_body })
       .then((document) => {
         res.send({ document_uuid: document.document_uuid });
         return next();

@@ -1,6 +1,7 @@
 'use strict'
 
-const restify = require('restify');
+const restify = require('restify-clients');
+
 const chai = require('chai');
 const assert = chai.assert;
 const expect = chai.expect;
@@ -31,49 +32,25 @@ describe('service: post get in firebase', function() {
   it('should add a document', function(done) {
     client
       .post('/documents/kostas',
-      function(err, req, res, data) {
-        if (err) {
-          throw new Error(err);
-        }
-        else {
-          let body = JSON.parse(res.body);
-          assert.equal(res.statusCode, 200);
-          expect(body.document_uuid).to.exist;
-          done();
-        }
-      });
+        function(err, req, res, data) {
+          if (err) {
+            throw new Error(err);
+          }
+          else {
+            let body = JSON.parse(res.body);
+            assert.equal(res.statusCode, 200);
+            expect(body.document_uuid).to.exist;
+            done();
+          }
+        });
   });
 
   it('should get a document', function(done) {
     client
       .post('/documents/kapekost', { body: "test body" },
-      function() {
-        client
-          .get('/documents/kapekost',
-          function(err, req, res, data) {
-            if (err) {
-              throw new Error(err);
-            }
-            else {
-              let body = JSON.parse(res.body);
-              assert.equal(res.statusCode, 200);
-              assert.equal(body.title, "kapekost");
-              assert.equal(body.body, "test body");
-              done();
-            }
-          });
-      })
-  })
-
-  it('should get first of 2 documents', function(done) {
-    client
-      .post('/documents/kapekost', { body: "test body" },
-      function() {
-        client
-          .post('/documents/kapekost2', { body: "test body2" },
-          function() {
-            client
-              .get('/documents/kapekost',
+        function() {
+          client
+            .get('/documents/kapekost',
               function(err, req, res, data) {
                 if (err) {
                   throw new Error(err);
@@ -86,61 +63,85 @@ describe('service: post get in firebase', function() {
                   done();
                 }
               });
-          })
-      })
+        })
+  })
+
+  it('should get first of 2 documents', function(done) {
+    client
+      .post('/documents/kapekost', { body: "test body" },
+        function() {
+          client
+            .post('/documents/kapekost2', { body: "test body2" },
+              function() {
+                client
+                  .get('/documents/kapekost',
+                    function(err, req, res, data) {
+                      if (err) {
+                        throw new Error(err);
+                      }
+                      else {
+                        let body = JSON.parse(res.body);
+                        assert.equal(res.statusCode, 200);
+                        assert.equal(body.title, "kapekost");
+                        assert.equal(body.body, "test body");
+                        done();
+                      }
+                    });
+              })
+        })
   })
 
   it('should get all documents', function(done) {
     client
       .post('/documents/kapekost', { body: "test body" },
-      function() {
-        client
-          .post('/documents/kapekost2', { body: "test body2" },
-          function() {
-            client
-              .get('/documents',
-              function(err, req, res, data) {
-                if (err) {
-                  throw new Error(err);
-                }
-                else {
-                  let body = JSON.parse(res.body);
-                  assert.equal(res.statusCode, 200);
-                  expect(body).to.exist;
-                  done();
-                }
-              });
-          })
-      })
+        function() {
+          client
+            .post('/documents/kapekost2', { body: "test body2" },
+              function() {
+                client
+                  .get('/documents',
+                    function(err, req, res, data) {
+                      if (err) {
+                        throw new Error(err);
+                      }
+                      else {
+                        let body = JSON.parse(res.body);
+                        assert.equal(res.statusCode, 200);
+                        expect(body).to.exist;
+                        done();
+                      }
+                    });
+              })
+        })
   })
 
   it('should delete a document', function(done) {
     client
       .post('/documents/kapekost', { body: "test body" },
-      function() {
-        client
-          .del('/documents',
-          function(err, req, res, data) {
-            if (err) {
-              throw new Error(err);
-            }
-            else {
-              assert.equal(res.statusCode, 200);
-              client
-                .get('/documents',
-                function(err, req, res, data) {
-                  if (err) {
-                    throw new Error(err);
-                  } else {
-                    let body = JSON.parse(res.body);
-                    assert.equal(res.statusCode, 200);
-                    assert.equal(res.body, "[]");
-                    done();
-                  }
-                })
-            }
-          });
-      })
+        function() {
+          client
+            .del('/documents',
+              function(err, req, res, data) {
+                if (err) {
+                  throw new Error(err);
+                }
+                else {
+                  assert.equal(res.statusCode, 200);
+                  client
+                    .get('/documents',
+                      function(err, req, res, data) {
+                        if (err) {
+                          throw new Error(err);
+                        } else {
+                          let body = JSON.parse(res.body);
+                          assert.equal(res.statusCode, 200);
+                          assert.equal(res.body, "[]");
+                          done();
+                        }
+                      })
+                }
+              });
+        })
   })
 })
 

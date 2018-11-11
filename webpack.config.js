@@ -8,14 +8,14 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.(js|jsx)$/,
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: ['es2015']
+							// presets: ['es2015']
 						}
 					}
 				]

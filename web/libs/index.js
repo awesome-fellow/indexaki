@@ -14,7 +14,8 @@ var callAPI = function(method, url, data) {
 				resolve(xmlHttp.responseText)
 			}
 		}
-		xmlHttp.open(method, url, true)
+		xmlHttp.open(method, url, true);
+		xmlHttp.setRequestHeader("Content-type", "application/json");
 		xmlHttp.send(JSON.stringify(data));
 	});
 }
