@@ -4,7 +4,7 @@
   "description": "store and search large documents",
   "main": "indexaki.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit",
     "coverage": "./node_modules/.bin/istanbul cover _mocha",
     "install": "webpack --progress --color -p",
     "debug": "node --inspect=12345 indexaki.js",
